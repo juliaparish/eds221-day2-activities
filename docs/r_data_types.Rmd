@@ -1,0 +1,108 @@
+---
+title: "r_data_types"
+author: "Julia Parish"
+date: "8/10/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Create a vector called vec_1containing the following:
+2, 5, 9, 10, 8, 12, 1, 0
+Check the following for that vector:
+- What is the class of the vector? class()
+- What type of variable does it store? typeof()
+- Access the 3rd element and store as vec_1_e3
+- Access the 1st element and store as vec_1_e1
+- Access the 5th through 7th elements and store as vec_1_e5to7
+- Reassign vec_1 as a character using as.character, stored as vec_1_char. What does the output look like?
+```{r}
+vec_1 <- c(2, 5, 9, 10, 8, 12, 1, 0)
+vec_1
+
+class(vec_1)
+# numeric
+
+# What type of variable does it store
+typeof(vec_1)
+# double
+
+# Access the 3rd element and store as vec_1_e3
+
+vec_1_e3 <- vec_1[3]
+vec_1_e3
+
+# Access the 1st element and store as vec_1_e1
+
+vec_1_e1 <- vec_1[1]
+vec_1_e1
+
+# Access the 5th through 7th elements and store as vec_1_e5to7
+
+vec_1_e5to7 <- vec_1[5:7]
+vec_1_e5to7
+
+# Reassign vec_1 as a character using as.character, stored as vec_1_char. What does the output look like?
+
+vec_1_char <- as.character(vec_1)
+vec_1_char
+
+```
+## Create a vector called vec_2
+vec_2 should contained named elements, where town = "Santa Barbara, location = "Rincon", swell = "south"
+
+```{r}
+vec_2 <- c(town = "Santa Barbara", location = "Rincon", swell = "south")
+
+vec_2
+
+class(vec_2)
+
+typeof(vec_2)
+
+vec_2[2]
+
+vec_2["location"]
+
+# What is the class of vector elements? class() - character
+# What is the length of vec_2? - 3
+# Access the 2nd element by name and store as vec_2_e2
+
+vec_2_e2 <- vec_2["location"]
+vec_2_e2
+
+```
+
+## Create a data frame in R, index
+## Write code to create a data frame called df_1 that looks like this:
+- ##   region     species count
+- ## 1      A       otter    12
+- ## 2      B great white     2
+- ## 3      A    sea lion    36
+- ## 4      D  gray whale     6
+
+```{r}
+df_1 <- data.frame(region = c("A", "B", "A","D"),
+                   species = c("otter", "great white", "sea lion", "gray whale"),
+                   count = c(12, 2, 36, 6))
+df_1  
+
+class(df_1)
+# data.frame
+
+# Return the class of the species column
+class(df_1$species)
+# character
+
+# Find the maximum value of the count() column, store as max_count
+
+max_count <- max(df_1$count)
+max_count
+
+# More functions - min, mean, etc..
+# Shortcuts - shift + (, shift + `, shift + " will wrap the text in these symbols  
+
+```
+
