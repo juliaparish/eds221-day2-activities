@@ -1,0 +1,51 @@
+---
+title: "Wild Data Mack Creek"
+author: "Julia Parish"
+date: "8/10/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
+library(janitor)
+
+```
+## Read in the data using read_csv() with here(), store as mack_verts
+
+```{r}
+mack_verts <- read_csv(here::here("data", "AS00601.csv"))
+mack_verts
+
+# Update the names to lower_snake_case
+
+mack_verts <- mack_verts %>% clean_names()
+
+```
+
+# # In a new code chunk, practice accessing individual pieces of the data frame (there is no real functionality to this, but just to reinforce stuff we learned in our interactive session):
+- Store the 5th value in column “WEIGHT” as mc_wt_5. Check by looking at your data frame to confirm.
+- Store the 8th - 20th value in the “LENGTH1” column as mc_length_8_20. Check by looking at your data frame to confirm.
+- Store everything in column SAMPLEDATE as a vector called mc_dates
+
+```{r}
+mc_wt_5 <- mack_verts$weight[5] 
+mc_wt_5
+
+mc_length_8_20 <- mack_verts$length1[8:10]
+mc_length_8_20
+
+mc_dates <- mack_verts$sampledate
+mc_dates
+
+```
+## Make a salamander subset - create a subset that only contains observations for Pacific Giant Salamanders (species Dicamptodon tenebrosus, stored in species as DITE). Store the subset as mc_salamanders. Hint: see dplyr::filter()
+
+```{r}
+mc_salamanders <- mack_verts %>% 
+  filter(species== "DITE")
+
+```
+
