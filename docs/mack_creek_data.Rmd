@@ -49,3 +49,33 @@ mc_salamanders <- mack_verts %>%
 
 ```
 
+# Make a scatterplot
+ - Create a scatterplot of length1 (snout-vent length in millimeters) versus weight (grams) for all salamanders in the dataset. 
+*If you have a variable you see as "explanatory" and the other one as the thing being explained, then one (very common) convention is to put the explanatory variable on the x-axis and the thing being explained by it on the y-axis. In some cases, if one variable is 'fixed' and the other is 'random', the more common convention is that random one tends to go on the y-axis of the plot.*
+ - Update axis labels, title, subtitle, and add a caption with the data source. Customize point color and size, possibly opacity, and theme.
+  - **x and y** : the x and y co-ordinates to be used to position the legend; 
+  - **legend** : the text of the legend; 
+ - **fill** : colors to use for filling the boxes beside the legend text; 
+ - **col** : colors of lines and points beside the legend text
+ - **bg** : the background color for the legend box.
+ - Export your scatterplot as salamander_size.png to your figs folder.
+
+```{r}
+mc_salamanders_plot <- 
+  ggplot(data = mc_salamanders, 
+         aes(x = length1, y = weight)) + 
+  geom_point(aes(size = length1), 
+             color = "green",
+             alpha = 0.25) +
+  labs(title = "Mack Creek Salamanders", 
+       x = "Snout to Vent Length (mm)", 
+       y = "Weight (g)",
+       size = "Salamander Length") 
+theme_dark()
+
+mc_salamanders_plot
+
+```
+
+
+
