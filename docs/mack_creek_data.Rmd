@@ -64,18 +64,59 @@ mc_salamanders <- mack_verts %>%
 mc_salamanders_plot <- 
   ggplot(data = mc_salamanders, 
          aes(x = length1, y = weight)) + 
-  geom_point(aes(size = length1), 
-             color = "green",
-             alpha = 0.25) +
+  geom_point(aes(size = length1, color = weight), 
+             # color = "green",
+             alpha = 0.25, 
+             show.legend = TRUE) +
+  scale_size_continuous(breaks = c(50, 100, 150), 
+                        labels = c("50mm", "100mm", "150mm"),
+                        guide = "none") +
   labs(title = "Mack Creek Salamanders", 
        x = "Snout to Vent Length (mm)", 
        y = "Weight (g)",
-       size = "Salamander Length") 
-theme_dark()
+       size = "Salamander Length") +
+  theme_classic() + 
+  theme(legend.position = "bottom")
 
 mc_salamanders_plot
 
+ggsave(here::here("figs", "salamander_size.png"),
+       height = 6, width = 6)
+
 ```
+# **Make a cutthroat plot**
+- Similar to above, make a subset called mc_trout that only contains observations for cutthroat trout
+- Create a scatterplot of length1 by weight for all trout in the dataset
+- Customize so that the point color depends on reach
+- Customize your color scheme (e.g. scale_color_manual())
+- Facet your plot by creek reach (facet_wrap(~...))
+- Update graph axis labels and title
+- Export your graph as cutthroat_size.png to figs
 
+- to change the strip (L,M,U) your facet wrap is attached to this reach column, need to add a new column with if else test
+ then facet wrap by new column 
 
+```{r}
+reach_labels <- c(L = "Lower", M = "Middle", U = "Upper")
+mc_trout <- mack_verts %>% 
+  filter(species== "ONCL") %>% 
+  mutate(reach_label = reach_labels[reach])
+
+mc_cutthroat_plot <- 
+  ggplot(data = mc_trout,
+    aes(x = length1, y = weight)) + 
+  geom_point(aes(color = reach),
+    show.legend = FALSE) + 
+  scale_color_manual(values = 
+                       c("L" = "dark blue", 
+                         "M" = "forest green",
+                         "U" = "salmon")) +
+  labs(title = "Cutthroat Trout Reach",
+       x = "Trout Length (mm)", 
+       y = "Weight (g)") +
+  facet_wrap(~reach_label)
+  
+mc_cutthroat_plot
+  
+```
 
